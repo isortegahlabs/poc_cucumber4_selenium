@@ -8,5 +8,13 @@
     <artifactId>cucumber4_selenium</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
+    <packaging>jar</packaging>
+    <name>cucumber 4 and selenium</name>
 
+    <developers>
+        <developer>
+            <name>isortegah</name>
+            <email>isortegah@gmail.com</email>
+        </developer>
+    </developers>
 </project>
