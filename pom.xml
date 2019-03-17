@@ -7,8 +7,11 @@
     <groupId>com.isortegah</groupId>
     <artifactId>cucumber4_selenium</artifactId>
     <version>0.1.0-SNAPSHOT</version>
+    <modules>
+        <module>jUnit4</module>
+    </modules>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>cucumber 4 and selenium</name>
 
     <developers>
