@@ -9,6 +9,7 @@
     <version>0.1.0-SNAPSHOT</version>
     <modules>
         <module>jUnit4</module>
+        <module>testNg</module>
     </modules>
 
     <packaging>pom</packaging>
