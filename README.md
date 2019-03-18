@@ -1,7 +1,13 @@
 
 
+Revisión de opciones 
 
-##Referencia
+Usage: java cucumber.api.cli.Main
+
+```
+mvn test -Dcucumber.options="-h"
+```
+## Referencia
 
 ### Junit 4
 
