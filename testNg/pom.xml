@@ -94,6 +94,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                         <suiteXmlFile>src/test/resources/testngRunnerCucumber.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testngRunnerCucumberCustom.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
