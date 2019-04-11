@@ -1,9 +1,10 @@
-import com.isortegah.framework.libs.CucumberRunner;
-import com.isortegah.framework.libs.TestNGCucumberRunnerCustom;
+package com.isortegah.framework.testRunner;
+
 import com.isortegah.framework.util.DateUtil;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.PickleEventWrapper;
+import cucumber.api.testng.TestNGCucumberRunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterClass;
@@ -11,36 +12,30 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.net.URISyntaxException;
-
-@CucumberOptions(features = "src/test/resources/features",
+@CucumberOptions(features = "classpath:features",
+        glue = "com.isortegah.framework.steps",
         plugin = {"pretty"})
-public class TestRunnerRuntime {
+public class TestRunnerCucumber {
 
-    private TestNGCucumberRunnerCustom testNGCucumberRunner;
+    private TestNGCucumberRunner testNGCucumberRunner;
 
     private static final Logger logger = LogManager.getLogger();
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() throws Exception {
-        testNGCucumberRunner = new TestNGCucumberRunnerCustom(this.getClass());
-    }
-
-    @Test
-    public void sanityTest() throws InterruptedException {
-        logger.info(DateUtil.getCurrentDate(this.getClass().getSimpleName() +":sanityTest"));
-        Thread.sleep(5000L);
-
-    }
-
-    @Test
-    public void feature() throws URISyntaxException {
-        new CucumberRunner(this.getClass()).runCukes();
+        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
     @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
     public void feature(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
         testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
+    }
+
+    @Test
+    public void sanityTest() throws InterruptedException {
+        logger.info(DateUtil.getCurrentDate(this.getClass().getSimpleName() +":sanityTest"));
+        Thread.sleep(3000L);
+
     }
 
     @DataProvider(parallel = true)
@@ -58,6 +53,4 @@ public class TestRunnerRuntime {
         }
         testNGCucumberRunner.finish();
     }
-
-
 }

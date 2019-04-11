@@ -1,8 +1,11 @@
+package com.isortegah.framework.testRunner;
+
+import com.isortegah.framework.libs.CucumberRunner;
+import com.isortegah.framework.libs.TestNGCucumberRunnerCustom;
 import com.isortegah.framework.util.DateUtil;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.PickleEventWrapper;
-import cucumber.api.testng.TestNGCucumberRunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterClass;
@@ -10,29 +13,36 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-@CucumberOptions(features = "classpath:features",
-        plugin = {"pretty"})
-public class TestRunnerCucumber {
+import java.net.URISyntaxException;
 
-    private TestNGCucumberRunner testNGCucumberRunner;
+@CucumberOptions(features = "src/test/resources/features",
+        plugin = {"pretty"})
+public class TestRunnerRuntime {
+
+    private TestNGCucumberRunnerCustom testNGCucumberRunner;
 
     private static final Logger logger = LogManager.getLogger();
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() throws Exception {
-        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-    }
-
-    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-    public void feature(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
-        testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
+        testNGCucumberRunner = new TestNGCucumberRunnerCustom(this.getClass());
     }
 
     @Test
     public void sanityTest() throws InterruptedException {
         logger.info(DateUtil.getCurrentDate(this.getClass().getSimpleName() +":sanityTest"));
-        Thread.sleep(3000L);
+        Thread.sleep(5000L);
 
+    }
+
+    @Test
+    public void feature() throws URISyntaxException {
+        new CucumberRunner(this.getClass()).runCukes();
+    }
+
+    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
+    public void feature(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
+        testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
     }
 
     @DataProvider(parallel = true)
@@ -50,4 +60,6 @@ public class TestRunnerCucumber {
         }
         testNGCucumberRunner.finish();
     }
+
+
 }
