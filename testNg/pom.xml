@@ -14,6 +14,7 @@
         <cucumber.version>4.2.6</cucumber.version>
         <testng.version>6.14.3</testng.version>
         <log4j2.version>2.11.1</log4j2.version>
+        <guice.version>4.2.2</guice.version>
     </properties>
 
     <dependencies>
@@ -38,6 +39,17 @@
                 <exclusion>
                     <groupId>org.testng</groupId>
                     <artifactId>testng</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>${cucumber.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.cucumber</groupId>
+                    <artifactId>cucumber-java</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -81,6 +93,11 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
             <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
         </dependency>
     </dependencies>
 
