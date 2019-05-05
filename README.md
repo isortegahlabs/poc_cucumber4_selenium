@@ -12,6 +12,10 @@ mvn test -Dcucumber.options="-h"
 
 ## Referencia
 
+### Cucumber
+
+[Manejo lambdas](https://medium.com/@bcarunmail/sharing-state-between-cucumber-step-definitions-using-java-and-spring-972bc31117af)
+
 ### TestNG 
 
 [cucumber-jvm](https://github.com/cucumber/cucumber-jvm/blob/580090bc2f7cdcc29830c2118f2ab2525663f81e/testng/README.md)  

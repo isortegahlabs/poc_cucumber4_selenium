@@ -7,5 +7,6 @@ public class SharedData {
 
     public String today;
     public String actualAnswer;
+    public String urlBase;
     int time;
 }

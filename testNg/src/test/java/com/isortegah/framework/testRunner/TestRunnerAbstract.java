@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(features = "src/test/resources/features",
         glue = "com.isortegah.framework.steps",
+        tags = "@current",
         plugin = {"pretty"})
 public class TestRunnerAbstract extends AbstractTestNGCucumberTests {
 

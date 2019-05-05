@@ -20,4 +20,10 @@ public class GivenSteps {
         sharedData.today = day;
         logger.info("Given: Today --> " + sharedData.today);
     }
+
+    @Given("^the URL base \"([^\"]*)\"$")
+    public void urlBase(String urlBase) {
+        sharedData.urlBase = urlBase;
+        logger.info("URL base --> " + sharedData.urlBase);
+    }
 }
