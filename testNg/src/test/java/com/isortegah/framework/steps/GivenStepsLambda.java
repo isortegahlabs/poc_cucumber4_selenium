@@ -6,8 +6,6 @@ import cucumber.api.java8.En;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.management.ManagementFactory;
-
 public class GivenStepsLambda implements En {
 
     private SharedData sharedData;
@@ -19,6 +17,7 @@ public class GivenStepsLambda implements En {
         this.sharedData = sharedData;
 
         GivenStepsLambdaSteps();
+
         Given("^the domain \"([^\"]*)\"$", (String urlbase) -> this.sharedData.urlBase = urlbase);
 
 
@@ -27,13 +26,11 @@ public class GivenStepsLambda implements En {
     //Lambda-steps inside method
     private void GivenStepsLambdaSteps() {
         Before((Scenario scenario) -> {
-            long threadId = Thread.currentThread().getId();
-            String processName = ManagementFactory.getRuntimeMXBean().getName();
-            logger.info("Before scenario : " + scenario.getName() + "Started in thread: " + threadId + ", in JVM: " + processName);
+            logger.info("Before scenario : " + scenario.getName() + "Started in thread: " + sharedData.threadId + ", in JVM: " + sharedData.processName);
         });
 
         After((Scenario scenario) -> {
-            logger.info("After scenario : " + scenario.getName());
+            logger.info("After scenario : " + scenario.getName() + " in thread: " + sharedData.threadId);
         });
 
         Given("^A connection \"([^\"]*)\"$", (String urlBase) -> {
@@ -41,6 +38,7 @@ public class GivenStepsLambda implements En {
             logger.info("URL base --> " + sharedData.urlBase);
         });
 
+        Given("^the browser \"(chrome|firefox)\"$", (String browser) -> sharedData.setBrowser(browser));
 
     }
 }
