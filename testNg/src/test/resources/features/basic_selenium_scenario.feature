@@ -14,8 +14,9 @@ Feature: Basic selenium scenario
     When the "local" browser is open
     And the browser is closed
 
-  @currents
+  @current
   Scenario: Open browser on google
     Given A connection "http://google.com"
     And the browser "chrome"
-    #When the browser opens
+    When the "local" browser is open
+    And the browser is closed
