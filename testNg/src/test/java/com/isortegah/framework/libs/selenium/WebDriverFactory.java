@@ -34,7 +34,7 @@ public class WebDriverFactory {
     }
 
     private static WebDriver getFirefoxDriver(){
-        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/firefox/linux/22/geckodriver");
+        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/firefox/linux/geckodriver");
         System.setProperty("webdriver.firefox.marionette","src/test/resources/drivers/firefox/linux/geckodriver");
         System.setProperty("webdriver.firefox.bin","/opt/firefox/firefox");
 
